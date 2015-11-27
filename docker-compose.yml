@@ -1,0 +1,22 @@
+mredis:
+  image: sameersbn/redis:latest
+  hostname: redis
+  domainname: localdomain
+  restart: always
+
+scmmetrics:
+  build: scmmetrics
+  hostname: scmmetrics
+  domainname: localdomain
+  links:
+    - mredis:redis
+  environment:
+    - TERM=xterm
+    - CONFIG=sdh.metrics.scm.config.ProductionConfig
+    - SCM_METRICS_VERSION=0.1.0-alpha1
+  ports:
+    - 5003:5003
+
+
+
+
