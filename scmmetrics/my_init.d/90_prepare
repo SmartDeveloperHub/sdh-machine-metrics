@@ -1,4 +1,0 @@
-#!/bin/sh
-/usr/lib/metrics/.env/bin/pip install --pre sdh-curator-py
-/usr/lib/metrics/.env/bin/pip install --pre Fragment-Service-Provider
-/usr/lib/metrics/.env/bin/pip install --pre SDH-Metrics==0.1.0-alpha4
