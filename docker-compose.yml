@@ -1,8 +1,7 @@
 mredis:
-  image: sameersbn/redis:latest
+  image: redis
   hostname: redis
   domainname: localdomain
-  restart: always
 
 scmmetrics:
   build: scmmetrics
@@ -13,10 +12,70 @@ scmmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.scm.config.ProductionConfig
-    - SCM_METRICS_VERSION=0.1.0-alpha1
+    - API_PORT=5003
+    - DB_DB=6
+    - LOG_LEVEL=10
   ports:
     - 5003:5003
 
+cimetrics:
+  build: cimetrics
+  hostname: cimetrics
+  domainname: localdomain
+  links:
+    - mredis:redis
+  environment:
+    - TERM=xterm
+    - CONFIG=sdh.metrics.ci.config.ProductionConfig
+    - API_PORT=5005
+    - DB_DB=5
+  ports:
+    - 5005:5005
 
+orgmetrics:
+  build: orgmetrics
+  hostname: orgmetrics
+  domainname: localdomain
+  links:
+    - mredis:redis
+  environment:
+    - TERM=xterm
+    - CONFIG=sdh.metrics.org.config.ProductionConfig
+    - API_PORT=5004
+    - AGORA_HOST=
+    - BROKER_HOST=
+    - DB_DB=7
+    - DB_HOST=redis
+  ports:
+    - 5004:5004
 
+qmetrics:
+  build: qmetrics
+  hostname: qmetrics
+  domainname: localdomain
+  links:
+    - mredis:redis
+  environment:
+    - TERM=xterm
+    - CONFIG=sdh.metrics.qualitative.config.ProductionConfig
+    - API_PORT=5006
+    - AGORA_HOST=
+    - BROKER_HOST=
+    - DB_DB=8
+    - DB_HOST=redis
+  ports:
+    - 5006:5006
 
+nginx:
+  build: nginx
+  hostname: nginx
+  domainname: localdomain
+  links:
+    - scmmetrics:scmmetrics
+    - cimetrics:cimetrics
+    - orgmetrics:orgmetrics
+    - qmetrics:qmetrics
+  ports:
+    - "9004:80"
+  volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf

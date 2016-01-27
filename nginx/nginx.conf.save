@@ -1,0 +1,87 @@
+user www-data;
+worker_processes 1;
+pid /var/run/nginx.pid;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+
+  gzip on;
+  gzip_disable "msie6";
+
+  proxy_cache_path /var/cache/nginx/proxycache levels=1:2 keys_zone=cache:30m max_size=500m;
+  proxy_temp_path /var/cache/nginx/proxytemp 1 2;
+  proxy_cache_key "$scheme$host$request_method$request_uri$request_length";
+
+  server {
+
+    listen 80 default_server;
+
+    location /quality/api {
+      proxy_pass http://qmetrics:5006/api;
+    }
+
+    location /quality/metrics {
+      proxy_pass http://qmetrics:5006/metrics;
+      subs_filter_types "*";
+      subs_filter "qmetrics:5006/metrics" "$http_host/metrics";
+      sub_filter_once off;
+      proxy_cache cache;
+      proxy_cache_valid 10m;
+    }
+
+    location /quality/views {
+      proxy_pass http://qmetrics:5006/views;
+      subs_filter_types "*";
+      subs_filter "qmetrics:5006/views" "$http_host/views";
+      sub_filter_once off;
+      proxy_cache cache;
+      proxy_cache_valid 10m;
+
+    }
+
+    location /scm/api {
+      proxy_pass http://scmmetrics:5003/api;
+      subs_filter_types "*";
+      subs_filter "qmetrics:5006/metrics" "$http_host/metrics";
+      sub_filter_once off;
+      proxy_cache cache;
+      proxy_cache_valid 10m;
+
+    }
+
+    location /scm/metrics {
+      proxy_pass http://scmmetrics:5003/metrics;
+    }
+
+    location /scm/views {
+      proxy_pass http://scmmetrics:5003/views;
+    }
+
+    location /ci/api {
+      proxy_pass http://cimetrics:5005/api;
+    }
+
+    location /ci/metrics {
+      proxy_pass http://cimetrics:5005/metrics;
+    }
+
+    location /ci/views {
+      proxy_pass http://cimetrics:5005/views;
+    }
+
+    location /org/api {
+      proxy_pass http://orgmetrics:5004/api;
+    }
+
+    location /org/metrics {
+      proxy_pass http://orgmetrics:5004/metrics;
+    }
+
+    location /org/views {
+      proxy_pass http://orgmetrics:5004/views;
+    }
+ }
+}

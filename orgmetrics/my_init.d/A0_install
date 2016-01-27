@@ -1,0 +1,7 @@
+#!/bin/sh
+/usr/lib/metrics/.env/bin/pip install --upgrade sdh-curator-py
+/usr/lib/metrics/.env/bin/pip install --upgrade Fragment-Service-Provider
+/usr/lib/metrics/.env/bin/pip install --upgrade SDH-Metrics
+/usr/lib/metrics/.env/bin/pip install --pre --upgrade SDH-ORG-Metrics
+/usr/lib/metrics/.env/bin/python /usr/lib/metrics/.env/bin/sdh-org-metrics &
+

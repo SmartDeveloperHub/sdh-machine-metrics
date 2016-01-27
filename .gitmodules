@@ -1,6 +1,0 @@
-[submodule "sdh-scm-metrics-docker"]
-	path = sdh-scm-metrics-docker
-	url = https://github.com/smartdeveloperhub/sdh-scm-metrics-docker.git
-[submodule "sdh-ci-metrics-docker"]
-	path = sdh-ci-metrics-docker
-	url = https://github.com/smartdeveloperhub/sdh-ci-metrics-docker.git
