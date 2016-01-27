@@ -12,6 +12,10 @@ scmmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.scm.config.ProductionConfig
+    - AGORA_HOST=
+    - AGORA_PORT=
+    - BROKER_HOST=
+    - BROKER_PORT=
     - API_PORT=5003
     - DB_DB=6
     - LOG_LEVEL=10
@@ -27,6 +31,10 @@ cimetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.ci.config.ProductionConfig
+    - AGORA_HOST=
+    - AGORA_PORT=
+    - BROKER_HOST=
+    - BROKER_PORT=
     - API_PORT=5005
     - DB_DB=5
   ports:
@@ -41,9 +49,11 @@ orgmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.org.config.ProductionConfig
-    - API_PORT=5004
     - AGORA_HOST=
+    - AGORA_PORT=
     - BROKER_HOST=
+    - BROKER_PORT=
+    - API_PORT=5004
     - DB_DB=7
     - DB_HOST=redis
   ports:
@@ -58,9 +68,11 @@ qmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.qualitative.config.ProductionConfig
-    - API_PORT=5006
     - AGORA_HOST=
+    - AGORA_PORT=
     - BROKER_HOST=
+    - BROKER_PORT=
+    - API_PORT=5006
     - DB_DB=8
     - DB_HOST=redis
   ports:

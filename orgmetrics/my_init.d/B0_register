@@ -2,21 +2,24 @@
 
 import requests
 import time
+import os
 
+agora_host = os.environ.get('AGORA_HOST', '') + ':' + str(os.environ.get('AGORA_PORT', ''))
+metric_host = os.environ.get('METRIC_HOST', 'http://127.0.0.1') + ':' + str(os.environ.get('METRIC_PORT', ''))
+ 
+def seed(t, u):
+    r = requests.post(agora_host + '/seeds', json={'type': t, 'uri': u})
+    print 'Load {} seed: {}'.format(t, r.status_code)
 
-def post_seed(ty, uri):
-	response = requests.post('http://138.4.249.224:9009/seeds', json={'type': ty, 'uri': uri})
-	print 'Load {} seed: {}'.format(ty, response.status_code)
-
-connected = False
-count = 0
-while not connected:
-	try:
-		post_seed('metrics:MetricService', 'http://138.4.249.224:9004/org/api')
-		post_seed('views:ViewService', 'http://138.4.249.224:9004/org/api')
-		connected = True
-	except Exception:
-                count += 1
-                if count > 5:
-                      break
-		time.sleep(1)
+con = False
+cou = 0
+while not con:
+    try:
+        seed('metrics:MetricService', metric_host + '/org/api')
+        seed('views:ViewService', metric_host + '/org/api')
+        con = True
+    except Exception:
+        cou += 1
+        if cou > 5:
+            break
+        time.sleep(1)
