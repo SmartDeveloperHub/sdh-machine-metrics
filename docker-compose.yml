@@ -15,10 +15,12 @@ scmmetrics:
     - AGORA_HOST=
     - AGORA_PORT=
     - BROKER_HOST=
+    - METRICS_HOST=
+    - METRICS_PORT=
     - BROKER_PORT=
     - API_PORT=5003
     - DB_DB=6
-    - LOG_LEVEL=10
+    - DB_HOST=redis
   ports:
     - 5003:5003
 
@@ -34,9 +36,12 @@ cimetrics:
     - AGORA_HOST=
     - AGORA_PORT=
     - BROKER_HOST=
+    - METRICS_HOST=
+    - METRICS_PORT=
     - BROKER_PORT=
     - API_PORT=5005
     - DB_DB=5
+    - DB_HOST=redis
   ports:
     - 5005:5005
 
@@ -52,6 +57,8 @@ orgmetrics:
     - AGORA_HOST=
     - AGORA_PORT=
     - BROKER_HOST=
+    - METRICS_HOST=
+    - METRICS_PORT=
     - BROKER_PORT=
     - API_PORT=5004
     - DB_DB=7
@@ -71,6 +78,8 @@ qmetrics:
     - AGORA_HOST=
     - AGORA_PORT=
     - BROKER_HOST=
+    - METRICS_HOST=
+    - METRICS_PORT=
     - BROKER_PORT=
     - API_PORT=5006
     - DB_DB=8
