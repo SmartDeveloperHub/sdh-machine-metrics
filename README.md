@@ -2,15 +2,15 @@
 
 Docker deployment of Metrics Micro Services.
 
-This repository deploys these containers:
+This repository creates and deploys the following containers:
 * Redis Database for Metrics
-* Qualitative Service
-* Source Code Management Service
-* Organization Service
-* Continuous Integration Service
+* Qualitative Metrics Service
+* Source Code Management Metrics&Views Service
+* Organization Metrics&Views Service
+* Continuous Integration Metrics&Views Service
 * Nginx
 
-### Ports (container - host):
+### Port forwarding (container - host):
 * SCM: 5003 - 5003
 * ORG: 5004 - 5004
 * CI: 5005 - 5005
@@ -40,7 +40,7 @@ This repository deploys these containers:
 
 ### Docker - Usage:
 
-|Alias|Command|
+|Action|Command|
 |:---------|:----------|
 |Start|```docker-compose up -d```|
 |Stop|```docker-compose stop```|
@@ -58,6 +58,14 @@ If you want to change port redirection or configuration, we suggest you:
 
 ### Metrics - Usage:
 
-Before deployment, you need to edit docker-compose.yml.
+Before deployment, you need to edit docker-compose.yml and assign values to some environment variables in order to let these services know where Agora and the desired AMQP broker are. These variables are:
 
-Put AGORA_HOST and BROKER_HOST value.
+*  AGORA_HOST
+* AGORA_PORT
+* BROKER_HOST
+* BROKER_PORT
+
+There are two additional environment variables that have to be assigned so as to indicate all metrics' containers how they should publish themselves as seeds in Agora:
+
+* METRIC_HOST
+* METRIC_PORT
