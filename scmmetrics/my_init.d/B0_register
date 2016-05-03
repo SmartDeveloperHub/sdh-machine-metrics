@@ -5,7 +5,7 @@ import time
 import os
 
 agora_host = os.environ.get('AGORA_HOST', '') + ':' + str(os.environ.get('AGORA_PORT', ''))
-metric_host = os.environ.get('METRIC_HOST', 'http://127.0.0.1') + ':' + str(os.environ.get('METRIC_PORT', ''))
+metric_host = os.environ.get('METRICS_HOST', 'http://127.0.0.1') + ':' + str(os.environ.get('METRICS_PORT', ''))
  
 def seed(t, u):
     r = requests.post('http://' + agora_host + '/seeds', json={'type': t, 'uri': u})
