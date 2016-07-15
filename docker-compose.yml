@@ -12,12 +12,12 @@ scmmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.scm.config.ProductionConfig
-    - AGORA_HOST=
-    - AGORA_PORT=
-    - BROKER_HOST=
-    - METRICS_HOST=
-    - METRICS_PORT=
-    - BROKER_PORT=
+    - AGORA_HOST=10.0.2.15
+    - AGORA_PORT=9009
+    - BROKER_HOST=10.0.2.15
+    - METRICS_HOST=10.0.2.15
+    - METRICS_PORT=9004
+    - BROKER_PORT=5672
     - API_PORT=5003
     - DB_DB=6
     - DB_HOST=redis
@@ -34,12 +34,12 @@ cimetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.ci.config.ProductionConfig
-    - AGORA_HOST=
-    - AGORA_PORT=
-    - BROKER_HOST=
-    - METRICS_HOST=
-    - METRICS_PORT=
-    - BROKER_PORT=
+    - AGORA_HOST=10.0.2.15
+    - AGORA_PORT=9009
+    - BROKER_HOST=10.0.2.15
+    - METRICS_HOST=10.0.2.15
+    - METRICS_PORT=9004
+    - BROKER_PORT=5672
     - API_PORT=5005
     - DB_DB=5
     - DB_HOST=redis
@@ -56,12 +56,12 @@ orgmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.org.config.ProductionConfig
-    - AGORA_HOST=
-    - AGORA_PORT=
-    - BROKER_HOST=
-    - METRICS_HOST=
-    - METRICS_PORT=
-    - BROKER_PORT=
+    - AGORA_HOST=10.0.2.15
+    - AGORA_PORT=9009
+    - BROKER_HOST=10.0.2.15
+    - METRICS_HOST=10.0.2.15
+    - METRICS_PORT=9004
+    - BROKER_PORT=5672
     - API_PORT=5004
     - DB_DB=7
     - DB_HOST=redis
@@ -78,12 +78,12 @@ qmetrics:
   environment:
     - TERM=xterm
     - CONFIG=sdh.metrics.qualitative.config.ProductionConfig
-    - AGORA_HOST=
-    - AGORA_PORT=
-    - BROKER_HOST=
-    - METRICS_HOST=
-    - METRICS_PORT=
-    - BROKER_PORT=
+    - AGORA_HOST=10.0.2.15
+    - AGORA_PORT=9009
+    - BROKER_HOST=10.0.2.15
+    - METRICS_HOST=10.0.2.15
+    - METRICS_PORT=9004
+    - BROKER_PORT=5672
     - API_PORT=5006
     - DB_DB=8
     - DB_HOST=redis
