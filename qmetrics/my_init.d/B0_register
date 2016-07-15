@@ -15,8 +15,8 @@ con = False
 cou = 0
 while not con:
     try:
-        seed('metrics:MetricService', metric_host + '/qualitative/api')
-        seed('views:ViewService', metric_host + '/qualitative/api')
+        seed('metrics:MetricService', 'http://' + metric_host + '/qualitative/api')
+        seed('views:ViewService', 'http://' + metric_host + '/qualitative/api')
         con = True
     except Exception:
         cou += 1
